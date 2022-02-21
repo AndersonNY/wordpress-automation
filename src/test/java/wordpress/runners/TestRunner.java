@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         glue = "wordpress/step_definitions",
         dryRun = false,
         //strict = true,
-        tags = "@login"
+        tags = "@Regression"
 )
 public class TestRunner {
 

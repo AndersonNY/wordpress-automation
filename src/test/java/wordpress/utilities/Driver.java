@@ -18,7 +18,7 @@ public class Driver {
 
     private static WebDriver driver;
 
-    public static WebDriver getDriver(){
+    public synchronized static WebDriver getDriver(){
         // check if the driver has value, if not assign a value
         if (driver == null) {
             // get the driver type from properties file

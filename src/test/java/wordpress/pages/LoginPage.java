@@ -29,8 +29,7 @@ public class LoginPage {
         @FindBy(xpath = "//*[@class='login__form-action']")
         public WebElement loginButton;
 
-        @FindBy(xpath = "//span[text()='My Site']")
-        public WebElement homePageTitle;
+
 
         @FindBy(xpath = "//*[contains(@class,'validation is-error')]")
         public WebElement incorrectPasswordMessage;
@@ -42,11 +41,6 @@ public class LoginPage {
             Utils.waitForVisibility(passwordInput, 4);
             passwordInput.sendKeys(password);
             loginButton.click();
-        }
-
-        public String getHomePageTitle () {
-            Utils.waitForVisibility(homePageTitle, 5);
-            return homePageTitle.getText();
         }
 
         public String getIncorrectPasswordMessage () {
