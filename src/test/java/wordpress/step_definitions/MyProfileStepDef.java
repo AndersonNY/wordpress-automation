@@ -1,8 +1,6 @@
 package wordpress.step_definitions;
 
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -11,13 +9,10 @@ import org.openqa.selenium.WebDriver;
 import wordpress.pages.HomePage;
 import wordpress.pages.LoginPage;
 import wordpress.pages.MyProfilePage;
-import wordpress.utilities.ConfigurationReader;
-import wordpress.utilities.Driver;
 import wordpress.utilities.Utils;
 
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 public class MyProfileStepDef {
     HomePage homePage=new HomePage();
@@ -85,14 +80,14 @@ public class MyProfileStepDef {
     @Then("User verifies First and Last Name should be")
     public void userVerifiesFirstAndLastNameShouldBe(DataTable dataTable) {
         List<Map<String,String>> rows=dataTable.asMaps(String.class,String.class);
-        Assert.assertEquals(rows.get(0).get("FirstName"),myProfilePage.firstName.getText());
-        Assert.assertEquals(rows.get(0).get("LastName"),myProfilePage.lastName.getText());
+        Assert.assertEquals(rows.get(0).get("FirstName"),myProfilePage.firstName.getAttribute("value"));
+        Assert.assertEquals(rows.get(0).get("LastName"),myProfilePage.lastName.getAttribute("value"));
 
     }
 
     @And("User verifies public display name as {string}")
     public void userVerifiesPublicDisplayNameAs(String displayName) {
-        Assert.assertEquals(displayName,myProfilePage.displayName.getText());
+        Assert.assertEquals(displayName,myProfilePage.displayName.getAttribute("value"));
     }
 
     @And("User verifies brief bio in About Me box")
@@ -117,19 +112,4 @@ public class MyProfileStepDef {
     public void verifyIfUserIsAbleToClickOnAddWordPressSite() {
         Assert.assertTrue(myProfilePage.addWordPressSite.isEnabled());
     }
-    @Before
-    public void setUp(){
-        driver= Driver.getDriver();
-        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
-        driver.get(ConfigurationReader.getProperty("url"));
-    }
-
-    @After
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-            driver = null;
-        }
-    }
-}
+   }

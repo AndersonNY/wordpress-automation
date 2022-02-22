@@ -14,7 +14,7 @@ import org.openqa.selenium.safari.SafariDriver;
 
 public class Driver {
 
-    public Driver(){}
+    private Driver(){}
 
     private static WebDriver driver;
 
@@ -27,7 +27,7 @@ public class Driver {
             switch (browser){
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver(new ChromeOptions().addArguments("disable-extensions"));
+                    driver = new ChromeDriver();
                     break;
                 case "chrome-headless":
                     WebDriverManager.chromedriver().setup();
